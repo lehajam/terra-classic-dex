@@ -39,24 +39,13 @@ This is a UNISWAP v3 DEX **implemented as a cosmos core module** listing LUNC/US
 
 **This is not the Terra market swap, it is not the swap used to peg USTC to USD**. It simply allows you to swap your LUNC or USTC in Terra Station. **This is not a dApp** **and the protocol is the liquidity provider. **In the example below we’re using a 1% transaction fee as an example but this will be set via governance with _Param Change Proposal_.
 
-** \
-**
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
 ![dex](https://github.com/lehajam/terra-classic-dex/blob/main/dex.png)
 
 Everytime people trade against the community DEX, they pay a transaction fee. The liquidity providers receive this fee. In this case, the protocol is the liquidity provider which** **means** all the fees will be paid to the protocol**. The funds used to provide liquidity will be **borrowed** from the oracle pool, **they will remain in the protocol and generate more money for it. The funds are NOT taken out of the protocol.**
 
 The risk associated with providing liquidity is called impermanent loss (IL) and will be mitigated by implementing the UNISWAP V3 concentrated liquidity feature. Indeed we have access to market prices within core modules thanks to the Oracle so we (the protocol) can provide liquidity dynamically with a tight range around the spot price and rebalance at a given interval (every X blocks). This also means we’ll get more fees by providing less liquidity.
 
-
-
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image2.png "image_tooltip")
-
+![uniswap_v3](https://github.com/lehajam/terra-classic-dex/blob/main/uniswap_v3.png)
 
 **<span style="text-decoration:underline;">Revenue estimation</span>**
 
@@ -98,11 +87,7 @@ To get access to the LUNA and ATOM tokens we can either submit proposals to the 
 To further increase the trading volume while innovating, we will offer DEFi powered **Terra Indices**: A one click swap to exchange your LUNC, or USTC for an index: Your traditional index product allowing to diversify your risk and gain exposure to multiple coins (LUNC and LUNA for example) in one click, powered by DEFi.
 
 
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image3.png "image_tooltip")
+![lp_pool](https://github.com/lehajam/terra-classic-dex/blob/main/lp_pool.png)
 
 
 To be clear this is not designed to push LUNC holders towards LUNA. It is designed to maximize the trading volume and provide arbitrage opportunities (see below) from few tokens which make sense to trade for our current holders: LUNC and USTC holders have been airdropped LUNA, some LUNA holders have or may want to have exposure to Terra Classic. **It burns LUNC and gives utility to USTC. **
@@ -111,13 +96,7 @@ We will start with one index (LUNC, LUNA) but will support more in the future wi
 
 When minting a new index, a fee will be captured and used to burn LUNC. This is set with a _Param Change Proposal_. **It is a nice way to reintroduce the burn tax in a place where it won’t be noticed.** An index can be minted and paid for using USTC only but can be redeemed against the constituents eg. LUNC + LUNA. We’ll also add pools with Terra Indices so we can arb internally the index against its constituents.
 
-
-
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image4.png "image_tooltip")
-
+![terra_index](https://github.com/lehajam/terra-classic-dex/blob/main/terra_index.png)
 
 Let’s be 100% clear here, **NO LUNC TOKENS WILL BE MINTED, **when you buy an index, LUNC and LUNA will be taken from the circulating supply by swapping against the DEX and put aside because they’re now part of the index. A new token representing the ownership of this index will be minted.
 
@@ -134,36 +113,17 @@ Flash loans (source: moonpay):
 
 _“Flash loans are uncollateralized loans without borrowing limits in which a user borrows funds and returns them in the same transaction. If the user can’t repay the loan before the transaction is completed, a smart contract cancels the transaction and returns the money to the lender.”_
 
-
-
-<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image5.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image5.png "image_tooltip")
-
+![flash_loan](https://github.com/lehajam/terra-classic-dex/blob/main/flash_loan.png)
 
 Tokens from the oracle pool are currently sitting idle without earning any yield. Lending them **internally** via flash loans to allow the protocol to flash swap and arb its own pools will help increase the trading volume of the DEX while generating a **risk free yield** on the tokens from the oracle pool.
 
 At a given interval (every X blocks), **the protocol** can take a flash loan from the oracle pool in order to perform a triangular arbitrage between the pools. This will boost the profit made from the DEX as well as generate a risk free yield on the tokens in the oracle pool in the form of transaction fees and arbitrage profit.
 
-
-
-<p id="gdcalert6" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image6.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert7">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image6.png "image_tooltip")
-
+![triangular_arb](https://github.com/lehajam/terra-classic-dex/blob/main/triangular_arb.png)
 
 We also want to be able to use flash loans to arb between the index and its constituents, for example, you buy the index and redeem it when the index price is lower than the constituents or you mint the index and redeem it when the index price is higher than the components.
 
-
-
-<p id="gdcalert7" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image7.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image7.png "image_tooltip")
-
-
+![index_arb](https://github.com/lehajam/terra-classic-dex/blob/main/index_arb.png)
 
 # Funding and development costs
 
