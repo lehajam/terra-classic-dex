@@ -14,7 +14,6 @@
 <p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
 
 
-
 # Terra Classic Community DEX
 
 
@@ -45,9 +44,7 @@ This is a UNISWAP v3 DEX **implemented as a cosmos core module** listing LUNC/US
 
 <p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
-
-![alt_text](images/image1.png "image_tooltip")
-
+![dex](https://github.com/lehajam/terra-classic-dex/blob/main/dex.png)
 
 Everytime people trade against the community DEX, they pay a transaction fee. The liquidity providers receive this fee. In this case, the protocol is the liquidity provider which** **means** all the fees will be paid to the protocol**. The funds used to provide liquidity will be **borrowed** from the oracle pool, **they will remain in the protocol and generate more money for it. The funds are NOT taken out of the protocol.**
 
